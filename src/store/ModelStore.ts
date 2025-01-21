@@ -423,9 +423,15 @@ class ModelStore {
 
     // Don't mark as downloaded if currently downloading
     if (exists && !this.downloadJobs.has(model.id)) {
-      runInAction(() => {
-        model.isDownloaded = true;
-      });
+      if (!model.isDownloaded) {
+        console.log(
+          'checkFileExists: marking as downloaded - this should not happen:',
+          model.id,
+        );
+        runInAction(() => {
+          model.isDownloaded = true;
+        });
+      }
     } else {
       runInAction(() => {
         model.isDownloaded = false;
