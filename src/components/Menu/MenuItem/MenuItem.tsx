@@ -105,7 +105,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       <Icon
         source={isSubmenuOpen ? 'chevron-down' : 'chevron-right'}
         size={18}
-        color={theme.colors.menuText}
+        color={
+          menuItemProps.disabled
+            ? theme.colors.onSurfaceDisabled
+            : theme.colors.primary
+        }
       />
     </View>
   );

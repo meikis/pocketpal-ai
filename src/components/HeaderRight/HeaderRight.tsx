@@ -65,6 +65,7 @@ export const HeaderRight: React.FC = observer(() => {
           leadingIcon={() => <SettingsIcon stroke={theme.colors.primary} />}
         />
         <Menu.Item
+          disabled={models.length === 0}
           submenu={models.map(model => (
             <Menu.Item
               label={model.name}

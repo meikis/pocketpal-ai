@@ -21,7 +21,7 @@ export const createStyles = (theme: Theme) =>
       overflow: 'hidden',
     },
     contentWithSubmenu: {
-      backgroundColor: theme.colors.menuBackgroundDimmed,
+      backgroundColor: theme.colors.menuBackground,
     },
     groupSeparator: {
       height: 6,
