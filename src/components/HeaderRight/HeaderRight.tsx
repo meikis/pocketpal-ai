@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View} from 'react-native';
 
 import {observer} from 'mobx-react';
@@ -21,6 +21,7 @@ import {
   TrashIcon,
 } from '../../assets/icons';
 import {Menu} from '../Menu';
+import {L10nContext} from '../../utils';
 
 export const HeaderRight: React.FC = observer(() => {
   const theme = useTheme();
@@ -28,6 +29,7 @@ export const HeaderRight: React.FC = observer(() => {
 
   const openMenu = () => setMenuVisible(true);
   const closeMenu = () => setMenuVisible(false);
+  const i10n = useContext(L10nContext);
 
   return (
     <View style={styles.headerRightContainer}>
@@ -51,44 +53,44 @@ export const HeaderRight: React.FC = observer(() => {
         }>
         <Menu.Item
           onPress={() => {}}
+          label={i10n.generationSettings}
+          leadingIcon={() => <SettingsIcon stroke={theme.colors.primary} />}
+        />
+        <Menu.Item
+          onPress={() => {}}
           submenu={[
             <Menu.Item label="Model 1" onPress={() => {}} disabled={false} />,
             <Menu.Item label="Model 2" onPress={() => {}} disabled={false} />,
           ]}
-          label="Model"
+          label={i10n.model}
           leadingIcon={() => <GridIcon stroke={theme.colors.primary} />}
-        />
-        <Menu.Item
-          onPress={() => {}}
-          label="Generation settings"
-          leadingIcon={() => <SettingsIcon stroke={theme.colors.primary} />}
         />
         <Menu.Separator />
         <Menu.Item
           onPress={() => {}}
-          label="Duplicate chat history"
+          label={i10n.duplicateChatHistory}
           leadingIcon={() => <DuplicateIcon stroke={theme.colors.primary} />}
         />
         <Menu.Item
           onPress={() => {}}
-          label="Export chat session"
+          label={i10n.exportChatSession}
           leadingIcon={() => <ShareIcon stroke={theme.colors.primary} />}
         />
         <Menu.Item
           onPress={() => {}}
-          label="Rename"
+          label={i10n.rename}
           leadingIcon={() => <EditIcon stroke={theme.colors.primary} />}
         />
         <Menu.Item
           onPress={() => {}}
-          label="Delete"
+          label={i10n.delete}
           labelStyle={{color: theme.colors.error}}
           leadingIcon={() => <TrashIcon stroke={theme.colors.error} />}
         />
         <Menu.Separator />
         <Menu.Item
           onPress={() => {}}
-          label="Make chat temporary"
+          label={i10n.makeChatTemporary}
           leadingIcon={() => (
             <ClockFastForwardIcon stroke={theme.colors.primary} />
           )}
