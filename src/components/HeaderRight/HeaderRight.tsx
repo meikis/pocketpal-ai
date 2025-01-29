@@ -6,7 +6,7 @@ import {IconButton, useTheme} from 'react-native-paper';
 
 import {styles} from './styles';
 
-import {chatSessionStore, uiStore} from '../../store';
+import {chatSessionStore, modelStore, uiStore} from '../../store';
 
 import {UsageStats} from '..';
 import {
@@ -30,6 +30,14 @@ export const HeaderRight: React.FC = observer(() => {
   const openMenu = () => setMenuVisible(true);
   const closeMenu = () => setMenuVisible(false);
   const i10n = useContext(L10nContext);
+
+  const models = modelStore.availableModels;
+  const activeModelId = modelStore.activeModelId;
+
+  const onSelectModel = (modelId: string) => {
+    modelStore.setActiveModel(modelId);
+    closeMenu();
+  };
 
   return (
     <View style={styles.headerRightContainer}>
@@ -57,11 +65,15 @@ export const HeaderRight: React.FC = observer(() => {
           leadingIcon={() => <SettingsIcon stroke={theme.colors.primary} />}
         />
         <Menu.Item
-          onPress={() => {}}
-          submenu={[
-            <Menu.Item label="Model 1" onPress={() => {}} disabled={false} />,
-            <Menu.Item label="Model 2" onPress={() => {}} disabled={false} />,
-          ]}
+          submenu={models.map(model => (
+            <Menu.Item
+              label={model.name}
+              onPress={() => onSelectModel(model.id)}
+              key={model.id}
+              selectable
+              selected={model.id === activeModelId}
+            />
+          ))}
           label={i10n.model}
           leadingIcon={() => <GridIcon stroke={theme.colors.primary} />}
         />
