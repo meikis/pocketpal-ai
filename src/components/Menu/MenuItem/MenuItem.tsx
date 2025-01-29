@@ -136,7 +136,6 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         title={label}
         style={[
           styles.container,
-          selectable || leadingIcon ? styles.containerWithLeading : null,
           isSubmenuOpen && styles.activeParent,
           isGroupLabel && styles.groupLabel,
           style,
